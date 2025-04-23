@@ -1,18 +1,15 @@
 import pandas as pd
-from datetime import datetime, timedelta
 
-# Dates futures
-today = datetime.today()
-dates = [(today + timedelta(weeks=i)).strftime("%Y-%m-%d") for i in range(1, 5)]
+# Données de projection
+dates = ["2025-04-30", "2025-05-07", "2025-05-14", "2025-05-21"]
+values = [8600, 5200, 6100, 8000]
 
-# Projections fictives
-data = {
+# Création du DataFrame
+df = pd.DataFrame({
     "date": dates,
-    "central_bank": ["Fed", "ECB", "BoJ", "PBoC"],
-    "value_usd": [8600, 5200, 6100, 8000],  # En milliards USD
-}
+    "value_usd": values
+})
 
-df = pd.DataFrame(data)
-df.to_csv("liquidity.csv", index=False)
-
-print("✅ Fichier CSV généré avec succès.")
+# Export au bon format UTF-8, séparé par virgules
+df.to_csv("liquidity.csv", index=False, encoding="utf-8")
+print("✅ Fichier liquidity.csv généré.")
